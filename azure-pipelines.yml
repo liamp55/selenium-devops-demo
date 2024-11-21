@@ -12,20 +12,13 @@ pool:
 variables:
   pythonVersion: '3.9'
 
-# steps:
-# - task: UsePythonVersion@0
-#   inputs:
-#     versionSpec: $(pythonVersion)
-#     addToPath: true
-#   displayName: 'Use Python $(pythonVersion)'
-
 steps:
-- script: |
-    echo "Installing Python 3.9 manually..."
-    sudo apt-get update
-    sudo apt-get install -y python3.9 python3.9-dev python3.9-distutils
-    python3.9 --version  # Verify the installation
-  displayName: 'Install Python 3.9'
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: $(pythonVersion)
+    addToPath: true
+  displayName: 'Use Python $(pythonVersion)'
+
 
 - script: |
     echo "Downloading Python release from GitHub..."
