@@ -10,13 +10,13 @@ pool:
   name: default
 
 variables:
-  pythonVersion: '3.x'
+  pythonVersion: '3.9'
 
 steps:
 - task: UsePythonVersion@0
   inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
+    versionSpec: $(pythonVersion)
+  displayName: 'Use Python $(pythonVersion)'
 
 - script: |
     echo "Downloading Python release from GitHub..."
