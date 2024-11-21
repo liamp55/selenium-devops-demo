@@ -10,23 +10,23 @@ pool:
   name: Default
 
 variables:
-  pythonVersion: '3'
+  pythonVersion: '3.9'
 
 steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: $(pythonVersion)
-    addToPath: true
-  displayName: 'Use Python $(pythonVersion)'
-
-
-
 - script: |
-    echo "Downloading Python release from GitHub..."
-    curl -H "Authorization: token $(GH_TOKEN)" -L -o python-release.tar.gz \
-      https://github.com/python/cpython/releases/download/v3/Python-3.tgz
-    tar -xvzf python-release.tar.gz
-  displayName: 'Download Python release from GitHub'
+    which brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew install python@3.9
+    python3.9 --version  # Check Python version
+  displayName: 'Install Python 3.9 from Homebrew on macOS'
+
+
+
+# - script: |
+#     echo "Downloading Python release from GitHub..."
+#     curl -H "Authorization: token $(GH_TOKEN)" -L -o python-release.tar.gz \
+#       https://github.com/python/cpython/releases/download/v3/Python-3.tgz
+#     tar -xvzf python-release.tar.gz
+#   displayName: 'Download Python release from GitHub'
 
 - script:
     python --version
