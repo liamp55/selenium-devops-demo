@@ -1,20 +1,21 @@
 import unittest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 
-class PythonSeleniumDemo(unittest.TestCase):
+class PythonOrgSearch(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome(executable_path=r'path_to_chromedriver')
+        self.driver = webdriver.Chrome()
+        self.driver.get("https://wikipedia.com")
 
-    def test_first_example(self):
-        driver = self.driver
-        driver.get("https://www.wikipedia.org")
-        title = driver.title
-        self.assertEqual(title, "Wikipedia")
+    def test_title(self):
+        self.assertEqual(self.driver.title, "Wikipedia", "Inequal title")
+        
 
     def tearDown(self):
-        self.driver.quit()
+        if self.driver:
+            self.driver.quit()
 
+    
 if __name__ == "__main__":
+
     unittest.main()
