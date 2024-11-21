@@ -8,7 +8,6 @@ trigger:
 
 pool:
   name: Default
-  demands: 'liam-work-agent'
 
 variables:
   pythonVersion: '3.9'
@@ -21,12 +20,17 @@ steps:
   displayName: 'Use Python $(pythonVersion)'
 
 
+
 # - script: |
 #     echo "Downloading Python release from GitHub..."
 #     curl -H "Authorization: token $(GH_TOKEN)" -L -o python-release.tar.gz \
 #       https://github.com/python/cpython/releases/download/v3.9.7/Python-3.9.7.tgz
 #     tar -xvzf python-release.tar.gz
 #   displayName: 'Download Python release from GitHub'
+
+- script:
+    python --version
+  displayName: 'Check python version' 
 
 - script: |
     python -m pip install --upgrade pip
