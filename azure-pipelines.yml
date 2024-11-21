@@ -7,10 +7,10 @@ trigger:
 - main
 
 pool:
-  vmImage: 'macos-latest'
+  name: Default
 
 variables:
-  pythonVersion: '3.x'
+  pythonVersion: '3.9'
 
 # steps:
 # - task: UsePythonVersion@0
