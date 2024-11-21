@@ -10,7 +10,7 @@ pool:
   name: default
 
 variables:
-  pythonVersion: '3.9'
+  pythonVersion: '3.x'
 
 steps:
 - task: UsePythonVersion@0
