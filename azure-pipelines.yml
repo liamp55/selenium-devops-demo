@@ -8,8 +8,7 @@ trigger:
 
 pool:
   name: Default
-  demands: 
-  - agent.name -equals 'liam-work-agent'
+  demands: 'liam-work-agent'
 
 variables:
   pythonVersion: '3.9'
