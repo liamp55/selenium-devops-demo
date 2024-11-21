@@ -39,6 +39,6 @@ steps:
 
 - script: |
     pip install pytest pytest-azurepipelines
-    pytest
+    pytest test_case.py
   displayName: 'pytest'
   
