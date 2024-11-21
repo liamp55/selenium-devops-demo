@@ -1,0 +1,37 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+
+trigger:
+- main
+
+pool:
+  name: default
+
+variables:
+  pythonVersion: '3.x'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
+
+- script: |
+    echo "Downloading Python release from GitHub..."
+    curl -H "Authorization: token $(GH_TOKEN)" -L -o python-release.tar.gz \
+      https://github.com/python/cpython/releases/download/v3.9.7/Python-3.9.7.tgz
+    tar -xvzf python-release.tar.gz
+  displayName: 'Download Python release from GitHub'
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'Install dependencies'
+
+- script: |
+    pip install pytest pytest-azurepipelines
+    pytest
+  displayName: 'pytest'
+  
